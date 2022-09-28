@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-devs=$(cat ./devices)
+DEV="${DEV:-./devices}"
+devs=$(cat $DEV)
 
 for ip in $(echo -n $devs); do {
 	echo trying $ip
