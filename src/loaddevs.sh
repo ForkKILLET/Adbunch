@@ -3,9 +3,8 @@
 source ./utils/color.sh
 
 DEV="${DEV:-./devices}"
-devs=$(cat $DEV)
 
-for ip in $(echo -n $devs); do
+for ip in $(<$DEV); do
 	echo $(green trying) $ip
 	{
 		out=$(adb connect $ip 2>&1)
