@@ -2,14 +2,16 @@
 
 DEV="${DEV:-./devices}"
 CMD="${CMD:-shell echo hello}"
-LOG="${LOG:-./adb.log}"
+LOG="${LOG:-./log}"
+
+echo \$ adb $CMD >> $LOG
 
 for ip in $(cat $DEV); do
-	echo running \$ adb -s $ip $CMD | tee -a $LOG
+	echo running \$ adb -s $ip $CMD
 	if [[ -n "$BG" ]]; then
-		adb -s $ip $(echo $CMD) >> $LOG &
+		adb -s $ip $(echo $CMD) 2>&1 >> $LOG &
 	else
-		adb -s $ip $(echo $CMD) >> $LOG
+		adb -s $ip $(echo $CMD) 2>&1 >> $LOG
 	fi
 done
 
