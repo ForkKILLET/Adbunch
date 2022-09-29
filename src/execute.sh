@@ -1,5 +1,7 @@
 #!/bin/env zsh
 
+source ./utils/color.sh
+
 DEV="${DEV:-./devices}"
 CMD="${CMD:-shell echo hello}"
 LOG="${LOG:-./log}"
@@ -7,7 +9,7 @@ LOG="${LOG:-./log}"
 echo \$ adb $CMD >> $LOG
 
 for ip in $(cat $DEV); do
-	echo running \$ adb -s $ip $CMD
+	echo $(green running) \$ adb -s $ip $CMD
 	if [[ -n "$BG" ]]; then
 		adb -s $ip $(echo $CMD) 2>&1 >> $LOG &
 	else
@@ -15,4 +17,4 @@ for ip in $(cat $DEV); do
 	fi
 done
 
-echo -n "(anykey) "; read -k 1
+read -k 1
