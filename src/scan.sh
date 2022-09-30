@@ -1,6 +1,6 @@
 #!/bin/env zsh
 
-source ./utils/color.sh
+source ${0:A:A:h}/utils/color.sh
 
 for i in {${START:-0}..${END:-255}}; do
 	ip=10.76.${IP3:-23}.$i:5555

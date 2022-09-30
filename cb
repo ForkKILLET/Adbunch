@@ -1,0 +1,28 @@
+#!/bin/zsh
+# vi: set ft=zsh:
+
+source ${0:A:h}/src/utils/color.sh
+
+envs=(
+	./data/cb.env
+	./cb.env
+)
+
+for f in $envs; do
+	[[ -f $f ]] && echo "$(green using) $f" && source $f
+done
+
+LOG="${LOG:-./log}"
+[[ ! -f $LOG ]] && echo "$(green creating) log: $LOG" && touch "$LOG"
+
+if [[ -z "$1" ]]; then
+	echo "$(blue all) scripts:\n$(ls ${0:A:h}/src/*.sh)"
+else
+	script="${0:A:h}/src/$1.sh"
+
+	if [[ -f $script ]]; then
+		"$script" $@[2,-1]
+	else
+		echo "$(red unknown) command: '$1'"
+	fi
+fi
