@@ -6,6 +6,8 @@ source ${0:A:h}/src/utils/color.sh
 envs=(
 	./data/cb.env
 	./cb.env
+	${0:A:h}/data/cb.env
+	${0:A:h}/cb.env
 )
 
 for f in $envs; do
