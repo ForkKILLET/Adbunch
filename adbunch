@@ -2,6 +2,7 @@
 # vi: set ft=zsh:
 
 source ${0:A:h}/src/utils/color.sh
+source ${0:A:h}/src/utils/allscripts.sh
 
 envs=(
 	./data/cb.env
@@ -11,20 +12,24 @@ envs=(
 )
 
 for f in $envs; do
-	[[ -f $f ]] && echo "$(green using) $f" && source $f
+	if [[ -f $f ]]; then
+		source $f
+		break
+	fi
 done
 
 LOG="${LOG:-./log}"
-[[ ! -f $LOG ]] && echo "$(green creating) log: $LOG" && touch "$LOG"
+[[ ! -f $LOG ]] && echo "$(green creating log): $LOG" && touch "$LOG"
 
 if [[ -z "$1" ]]; then
-	echo "$(blue all) scripts:\n$(ls ${0:A:h}/src/*.sh)"
+	echo "$(blue Adbunch) ver $(blue $(<${0:A:h}/version.txt)) by $(blue ForkKILLET '<fork_killet@qq.com>')"
+	echo "$(green all scripts): $(alls)"
 else
 	script="${0:A:h}/src/$1.sh"
 
 	if [[ -f $script ]]; then
 		"$script" $@[2,-1]
 	else
-		echo "$(red unknown) command: '$1'"
+		echo "$(red unknown command): '$1'"
 	fi
 fi

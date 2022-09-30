@@ -1,6 +1,6 @@
 #!/bin/env zsh
 
-source ${0:A:A:h}/utils/color.sh
+source ${0:A:h}/utils/color.sh
 
 DEV="${DEV:-./devices}"
 CMD="${CMD:-shell echo hello}"
