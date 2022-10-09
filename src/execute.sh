@@ -10,12 +10,9 @@ echo "[@: $(date +%Y/%m/%d-%H:%M:%S)] \$ adb $CMD" >> $LOG
 
 for ip in $(<$DEV); do
 	echo $(green running) \$ adb -s $ip $CMD
-	echo -n "[ip: $ip] " >> $LOG
-	if [[ -n "$BG" ]]; then
-		adb -s $ip $(echo $CMD) 2>&1 >> $LOG &
-	else
-		adb -s $ip $(echo $CMD) 2>&1 >> $LOG
-	fi
+	[[ -n "$BG" ]] && and='&'
+	sed="0,/^/s//[ip: $ip] /;\$a\\"
+	eval "adb -s $ip $CMD 2>&1 | sed -e '$sed' >> $LOG $and"
 done
 
 read -k 1
