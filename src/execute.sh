@@ -16,4 +16,4 @@ for ip in $(<$DEV); do
 	eval "adb -s $ip $cmd 2>&1 | sed -e '$sed' >> $LOG $and"
 done
 
-read -k 1
+[[ -n "$NOGC" ]] || read -k 1
