@@ -1,5 +1,7 @@
 compdef _adbunch adbunch
 
 _adbunch () {
-	_values subcommands $ALLS
+	_arguments \
+		"1: :($ALLS)" \
+		"*: :_files"
 }
