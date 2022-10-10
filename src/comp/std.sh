@@ -1,5 +1,5 @@
 compdef _adbunch adbunch
 
 _adbunch () {
-	_values $ALLS
+	_values subcommands $ALLS
 }
