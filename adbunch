@@ -5,21 +5,27 @@ source ${0:A:h}/src/utils/color.sh
 source ${0:A:h}/src/utils/allscripts.sh
 
 envs=(
-	./data/.adbunch{,.env}
-	./.adbunch{,.env}
-	${0:A:h}/data/.adbunch{,.env}
-	${0:A:h}/.adbunch{,.env}
+    ./data/adbunch{,.env}
+    ./adbunch{,.env}
+    ${0:A:h}/data/adbunch{,.env}
+    ${0:A:h}/adbunch{,.env}
+    ~/.config/adbunch{,.env}
+    ~/.config/adbunch/env
 )
 
 for f in $envs; do
 	if [[ -f $f ]]; then
+		[[ -z "$QU" ]] && echo "$(green using config): ${f:A}"
 		source $f
 		break
 	fi
 done
 
 LOG="${LOG:-./log}"
-[[ ! -f $LOG ]] && echo "$(green creating log): $LOG" && touch "$LOG"
+if [[ ! -f $LOG ]]; then
+	[[ -z "$QU" ]] && echo "$(green creating log): $LOG"
+	touch "$LOG"
+fi
 
 if [[ -z "$1" ]]; then
 	echo "$(blue Adbunch) ver $(blue $(<${0:A:h}/version.txt)) by $(blue ForkKILLET '<fork_killet@qq.com>')"
