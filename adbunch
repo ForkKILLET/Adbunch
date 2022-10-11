@@ -5,10 +5,10 @@ source ${0:A:h}/src/utils/color.sh
 source ${0:A:h}/src/utils/allscripts.sh
 
 envs=(
-	./data/cb.env
-	./cb.env
-	${0:A:h}/data/cb.env
-	${0:A:h}/cb.env
+	./data/.adbunch{,.env}
+	./.adbunch{,.env}
+	${0:A:h}/data/.adbunch{,.env}
+	${0:A:h}/.adbunch{,.env}
 )
 
 for f in $envs; do
