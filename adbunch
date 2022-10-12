@@ -5,11 +5,11 @@ source ${0:A:h}/src/utils/color.sh
 source ${0:A:h}/src/utils/allscripts.sh
 
 envs=(
-    ./data/adbunch{,.env}
-    ./adbunch{,.env}
-    ${0:A:h}/data/adbunch{,.env}
-    ${0:A:h}/adbunch{,.env}
-    ~/.config/adbunch{,.env}
+    ./data/.adbunch{,.env}
+    ./.adbunch{,.env}
+    ${0:A:h}/data/.adbunch{,.env}
+    ${0:A:h}/.adbunch{,.env}
+    ~/.config/.adbunch{,.env}
     ~/.config/adbunch/env
 )
 
