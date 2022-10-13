@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-source ${0:A:A:h}/utils/color.sh
+source ${0:A:h}/utils/color.sh
 
 DEV="${DEV:-./devices}"
 
@@ -12,4 +12,4 @@ for ip in $(<$DEV); do
 	} & 
 done
 
-${0:A:A:h}/count.sh
+${0:A:h}/count.sh
